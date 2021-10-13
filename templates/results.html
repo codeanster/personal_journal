@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}   
+{% block body %}
+
+{%- for message in get_flashed_messages() %}
+   {{ message }}
+{%- endfor %}
+
+<br>
+<div class='container'>
+   <table class = 'table table-bordered table-hover table-responsive'>            
+      <thead>
+         <tr class='header'>
+            <th>Entry ID</th>
+            <th> Entry </th>
+            <th> Date </th>
+         </tr>
+      </thead>
+      
+      <tbody>
+         {% for sentence in data %}
+            <td> {{ sentence[0] }} </td> 
+            <td> {{ sentence[1] }}  </td>
+            <td> {{ sentence[2] }}  </td>   
+            <td> <a href= "/show_post/{{sentence [0] }}"> View Post</a></td>          
+            </tr>
+         {% endfor %}
+  
+
+      </tbody>
+   </table>
+</div>
+{% endblock %}   

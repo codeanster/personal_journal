@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+
+      {%- for message in get_flashed_messages() %}
+         {{ message }}
+      {%- endfor %}
+
+<script>
+   function myFunction() {
+         // Declare variables
+         var input, filter, table, tr, td, i, txtValue;
+         input = document.getElementById("myInput");
+         filter = input.value.toUpperCase();
+         table = document.getElementById("myTable");
+         tr = table.getElementsByTagName("tr");
+
+         // Loop through all table rows, and hide those who don't match the search query
+         for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+               txtValue = td.textContent || td.innerText;
+               if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                     tr[i].style.display = "";
+               } else {
+                     tr[i].style.display = "none";
+               }
+            }
+         }
+   }     
+</script> 
+
+<br>
+<div class="loader"></div>
+<div class='container'>
+   <h3>Quick Search</h3>
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search Posts">
+    <!--<p><button onclick="sortTable()">Sort Order ID</button></p>!-->
+</div>
+
+<div class='container'>
+      <table id='myTable' class = 'table table-bordered table-hover table-responsive'>
+         <thead>
+            <tr>
+               <th>Journal_entries</th>
+               <th>Date</th>
+            </tr>
+         </thead>
+         
+         <tbody>
+            {% for row in rows %}
+               <tr>
+                  <td>{{ row [ 1 ] }}</td>
+                  <td>{{ row [ 2 ] }}</td>
+                  <td> <a href= "/remove/{{row [0] }}"> Remove Entry</a></td>
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+</div>
+      
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}   
+{% block body %}
+
+<div class='container'>
+    <table class = 'table table-bordered table-hover table-responsive'>
+       <thead>
+          <tr>
+             <th>Journal_entry</th>
+          </tr>
+       </thead>
+       
+       <tbody>
+             <tr>
+                <td>{{entry[0]}}</td>
+                <td>{{entry[1]}}</td>
+             </tr>
+       </tbody>
+    </table>
+</div>
+
+
+{% endblock %}
